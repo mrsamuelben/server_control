@@ -1,5 +1,5 @@
 {
-    "name": "Server_control_receiver",
+    "name": "Server_control",
     "description": "",
     "dependencies": {
         "core": "*",
