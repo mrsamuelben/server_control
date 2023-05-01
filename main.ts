@@ -1,6 +1,6 @@
-input.onButtonPressed(Button.A, function () {
-    steps += 1
-    if (steps == 1) {
+radio.onReceivedNumber(function (receivedNumber) {
+    if (receivedNumber == 0) {
+        pins.servoWritePin(AnalogPin.P1, 0)
         basic.showLeds(`
             . . # . .
             . # # # .
@@ -8,8 +8,8 @@ input.onButtonPressed(Button.A, function () {
             . . # . .
             . . # . .
             `)
-        test = 0
-    } else if (steps == 2) {
+    } else if (receivedNumber == 180) {
+        pins.servoWritePin(AnalogPin.P1, 180)
         basic.showLeds(`
             . . # . .
             . . # . .
@@ -17,8 +17,8 @@ input.onButtonPressed(Button.A, function () {
             . # # # .
             . . # . .
             `)
-        test = 180
-    } else if (steps == 3) {
+    } else if (receivedNumber == 90) {
+        pins.servoWritePin(AnalogPin.P1, 90)
         basic.showLeds(`
             # . . . #
             . # . # .
@@ -26,20 +26,9 @@ input.onButtonPressed(Button.A, function () {
             . # . # .
             # . . . #
             `)
-        test = 90
     } else {
-        steps = 0
+        basic.showIcon(IconNames.Surprised)
     }
 })
-input.onButtonPressed(Button.AB, function () {
-    pins.servoWritePin(AnalogPin.P1, 90)
-    SuperBit.Music(SuperBit.enMusic.dadadum)
-})
-input.onButtonPressed(Button.B, function () {
-    pins.servoWritePin(AnalogPin.P1, test)
-})
-let test = 0
-let steps = 0
+radio.setGroup(1)
 basic.showIcon(IconNames.Heart)
-steps = 0
-basic.pause(1000)
